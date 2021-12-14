@@ -4,7 +4,7 @@ class enemy:
         self.speed = mvt_speed
         self.life = life_point
 
-    def printname(self):
+    def printname(self): # Temporaire
         print(self.name, self.speed, self.life)
 
 class octorok(enemy):
