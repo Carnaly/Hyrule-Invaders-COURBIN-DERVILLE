@@ -15,13 +15,14 @@ Que reste-t-il à faire ?
 """
 from tkinter import Button, Canvas, Label, Tk, mainloop
 
+
 #Création de la fenêtre
 invade = Tk()
 invade.title('Hyrule Invaders')
 invade.geometry('1920x1080')
 
 #Canevas
-Canevas = Canvas(invade, width=1300, height=750, bg='black')
+Canevas = Canvas(invade, width=1300, height=800, bg='black')
 Canevas.place(x=0, y=0)
 
 #Zone de Score
@@ -30,7 +31,7 @@ Score.config(font=('Courier',12))
 Score.place (x=1400, y = 100)
 
 #bouton quitter
-Quit = Button(invade, text='Quitter')#, command=RageQuit)
+Quit = Button(invade, text = 'Quitter', command = invade.destroy)
 Quit.place(x=1400, y= 400)
 
 #bouton nouvelle partie
