@@ -1,4 +1,4 @@
-# Space-Invaders-COURBIN-DERVILLE
+# Hyrule-Invaders-COURBIN-DERVILLE
 TP CS-DEV
 
 Les règles du jeu
