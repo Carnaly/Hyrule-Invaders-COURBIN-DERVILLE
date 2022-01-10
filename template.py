@@ -10,4 +10,12 @@ Créé le [date] à [heure]
 Que reste-t-il à faire ?
 [tout doux liste]
 """
-pimpoudou
+
+'''
+PILE = La Vie 
+
+FILE = (a voir) position du joueur bord gauche vers bord droit
+
+LISTE = Ligne d'ennemis
+
+'''
