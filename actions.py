@@ -14,18 +14,21 @@ Que reste-t-il à faire ?
 - déplacement ennemis
 - tir ennemi
 - dégats pris par l'ennemi
-- 
+- Limite canvas
 """
 
 #  Déplacement du joueur
+
+from test import PosX
+
 
 def deplacement(event):
     # Gestion de l'événement Appui sur une touche de clavier
     global PosX, PosY
     touche = event.keysym
-    print(touche)
 
     # Déplacement vers la gauche
+    # # # Rajouter limite et déplacements aux limites
     if touche == 'q' or touche == '<Left>':
         PosX -= 10
     
@@ -42,7 +45,8 @@ def tir_joueur(event):
     print(touche)
 
     # Tir
-    if touche == '<space>' or touche == '<Up>':
+    if touche == 'space' or touche == '<Up>':
+        print('boom')
         
 
 
