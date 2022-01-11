@@ -11,10 +11,9 @@ Que reste-t-il à faire ?
 [tout doux liste]
 """
 
-from os import wait
+
 from tkinter import Button, Canvas, Label, PhotoImage, Tk, mainloop
 from tkinter.constants import ANCHOR, NW
-
 
 #Création de la fenêtre
 invade = Tk()
@@ -54,7 +53,7 @@ PosY =900
 
 Pion = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10,width=5, outline='black', fill='red')
 
-def deplacement(event):
+def actions_joueur(event):
     # Gestion de l'événement Appui sur une touche de clavier
     global PosX, PosY
     touche = event.keysym
@@ -70,31 +69,29 @@ def deplacement(event):
         if PosX + 30 < 1600 : 
             PosX += 30
         Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
-
-Canevas.after(100000000000000, deplacement)
-
-# Tir du joueur
-
-def tir_joueur(event):
-    global PosX, PosY
-    touche = event.keysym
-    print(touche)
-
-    # Tir
+    
+    # Tir du joueur
     if touche == 'space' or touche == 'Up':
         tir_test(PosX)
         print('boom')
 
+
+
+
+
 def tir_test(PosX):
     y = 800
     Projectile = Canevas.create_rectangle(PosX-2, y, PosX+2, y+10 , width=5, outline='white', fill='white')
-    while y > 0 :
+    if y-10 > 0 :
         y -= 10
-        Canevas.coords(Projectile, PosX-2, y, PosX+2, y+10)
-        print(Canevas.coords(Projectile))
-        Canevas.after(50)
+        Canevas.move(Projectile, PosX-2, y, PosX+2, y+10)
+        Canevas.after(100,tir_test)
+    if y < 0 :
+        Projectile.destroy()
+
+Canevas.after(10,actions_joueur)
 
 Canevas.focus_set()
-Canevas.bind('<Key>',tir_joueur)
+Canevas.bind('<Key>',actions_joueur)
 
 invade.mainloop()
