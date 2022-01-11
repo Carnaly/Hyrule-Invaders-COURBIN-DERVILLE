@@ -22,6 +22,12 @@ Que reste-t-il à faire ?
 from test import PosX
 
 
+
+PosX =800
+PosY =900
+
+Pion = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10,width=5, outline='black', fill='red')
+
 def deplacement(event):
     # Gestion de l'événement Appui sur une touche de clavier
     global PosX, PosY
@@ -49,9 +55,23 @@ def tir_joueur(event):
     print(touche)
 
     # Tir
-    if touche == 'space' or touche == '<Up>':
+    if touche == 'space' or touche == 'Up':
+        tir_test(PosX)
         print('boom')
-        
+
+def tir_test(PosX):
+    y = 800
+    Projectile = Canevas.create_rectangle(PosX-2, y, PosX+2, y+10 , width=5, outline='white', fill='white')
+    while y > 0 :
+        y -= 10
+        Canevas.coords(Projectile, PosX-2, y, PosX+2, y+10)
+        print(Canevas.coords(Projectile))
+        Canevas.after(50,tir_joueur)
+    if y < 0 :
+        Projectile.destroy()
+
+Canevas.after(10,tir_test)
+
 
 
 
