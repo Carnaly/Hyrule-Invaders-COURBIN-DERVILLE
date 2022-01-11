@@ -87,7 +87,21 @@ EnnemiH = Canevas.create_image(XH,Y, image=imgennemi2)
 
 #Création des obstacles
 imgbuisson=PhotoImage(file='Buisson.png')
-Buisson = Canevas.create_image(300,300, image=imgbuisson)
+Buisson11 = Canevas.create_image(100,200, image=imgbuisson)
+Buisson21 = Canevas.create_image(164,200, image=imgbuisson)
+Buisson31 = Canevas.create_image(228,200, image=imgbuisson)
+Buisson41 = Canevas.create_image(292,200, image=imgbuisson)
+Buisson12 = Canevas.create_image(100,264, image=imgbuisson)
+Buisson22 = Canevas.create_image(164,264, image=imgbuisson)
+Buisson32 = Canevas.create_image(228,264, image=imgbuisson)
+Buisson42 = Canevas.create_image(292,264, image=imgbuisson)
+Buisson13 = Canevas.create_image(100,328, image=imgbuisson)
+Buisson23 = Canevas.create_image(164,328, image=imgbuisson)
+Buisson33 = Canevas.create_image(228,328, image=imgbuisson)
+Buisson43 = Canevas.create_image(292,328, image=imgbuisson)
+Buisson51 = Canevas.create_image(380,200, image=imgbuisson)
+Buisson61 = Canevas.create_image(444,200, image=imgbuisson)
+Buisson71 = Canevas.create_image(508,200, image=imgbuisson)
 
 #Déplacement des ennemis
 def deplacementEnnemis():
