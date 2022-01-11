@@ -8,13 +8,11 @@ Qui l'a fait : Michel COURBIN, Thomas DERVILLE
 Créé le 14 Décembre 2021 à 11:11
 
 Que reste-t-il à faire ?
-- déplacements joueur
-- tir joueur
 - dégats pris par le joueur
-- déplacement ennemis
 - tir ennemi
 - dégats pris par l'ennemi
-- Limite canvas
+- bloc
+- degats pris par les blocs
 """
 
 #  Déplacement du joueur
@@ -62,11 +60,11 @@ def tir_joueur(event):
 def tir_test(PosX):
     y = 800
     Projectile = Canevas.create_rectangle(PosX-2, y, PosX+2, y+10 , width=5, outline='white', fill='white')
-    while y > 0 :
+    if y - 10 > 0 :
         y -= 10
         Canevas.coords(Projectile, PosX-2, y, PosX+2, y+10)
         print(Canevas.coords(Projectile))
-        Canevas.after(50,tir_joueur)
+        Canevas.after(50,tir_test)
     if y < 0 :
         Projectile.destroy()
 

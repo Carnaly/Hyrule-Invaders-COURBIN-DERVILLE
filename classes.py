@@ -25,21 +25,6 @@ Que reste-t-il à faire ?
 
 """
 
-from tkinter import Tk, Button, Canvas
-
-# Mini fenêtre de test woula ça reste pas msgfmkdslw
-mw = Tk()
-mw.title('c 1 test ptn')
-mw.geometry('2000x1000+100+100')
-
-canva= Canvas(mw, width=1600, height=900, bg='white')
-canva.pack(padx=5, pady=5)
-
-ButtQuit = Button(mw, text='Quit', command=mw.destroy)
-ButtQuit.pack(side='right', padx = 10, pady= 10)
-
-mw.mainloop()
-
 
 
 # Partie classe des ennemis
@@ -78,6 +63,7 @@ class projectile:
 class proj_link(projectile):
     def __init__(self, mvt_speed, mvt_direction):
         projectile.__init__("proj_link", mvt_speed, mvt_direction)
+        
 class proj_octo(projectile):
     def __init__(self, mvt_speed, mvt_direction):
         projectile.__init__(self, "proj_octo", mvt_speed, mvt_direction)
@@ -91,6 +77,7 @@ class proj_octo(projectile):
 
 class link:
     def __init__(self, name, mvt_speed, life_point):
+        self = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10,width=5, outline='black', fill='red')
         self.name = name
         self.speed = mvt_speed
         self.life = life_point
