@@ -10,25 +10,16 @@ Créé le 14 décembre 2021 à 08:38
 
 Que reste-t-il à faire ?
 - classe octorok
-- image octo
 - mouvement octo
 - classe moblin
 - mouvement moblin
-- image moblin
-- classe lynel
-- mouvement lynel
-- image lynel
 - classe joueur
-- image link
-- déplacement joueur clavier
 - classe projectile joueur
 - image proj link
 - classe projectile octorok
 - image proj octo
 - classe projectile moblin
 - image proj moblin
-- classe projectile lynel
-- image proj lynel
 - classe block
 - image bloc
 
@@ -71,9 +62,6 @@ class octorok(enemy):
 #    def __init__(self, mvt_speed, life_point):
 #       enemy.__init__(self, "moblin", mvt_speed, life_point, "proj_mob")
 
-#class lynel(enemy):
-#    def __init__(self, mvt_speed, life_point):
-#        enemy.__init__(self, "lynel", mvt_speed, life_point, "proj_lyn")
 
 x = octorok(10,1)
 x.printname()
@@ -98,9 +86,6 @@ class proj_octo(projectile):
 #    def __init__(self, mvt_speed, mvt_direction):
 #        projectile.__init__(self, "proj_mob", mvt_speed, mvt_direction)
 
-#class proj_lyn(projectile):
-#    def __init__(self, mvt_speed, mvt_direction):
-#        projectile.__init__(self, "proj_lyn", mvt_speed, mvt_direction)
 
 # Partie classe joueur
 

@@ -11,6 +11,7 @@ Que reste-t-il à faire ?
 [tout doux liste]
 """
 
+from os import wait
 from tkinter import Button, Canvas, Label, PhotoImage, Tk, mainloop
 from tkinter.constants import ANCHOR, NW
 
@@ -57,19 +58,18 @@ def deplacement(event):
     # Gestion de l'événement Appui sur une touche de clavier
     global PosX, PosY
     touche = event.keysym
-    print(touche)
 
     # Déplacement vers la gauche
     if touche == 'q' or touche == 'Left':
-        PosX -= 30
-        print(PosX)
-    Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
+        if PosX - 30 > 0 :
+            PosX -= 30
+        Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
     
     # Déplacement vers la droite
     if touche == 'd' or touche == 'Right':
-        PosX += 30
-        print(PosX)
-    Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
+        if PosX + 30 < 1600 : 
+            PosX += 30
+        Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
 
 Canevas.after(100000000000000, deplacement)
 
@@ -81,11 +81,20 @@ def tir_joueur(event):
     print(touche)
 
     # Tir
-    if touche == 'space' or touche == '<Up>':
+    if touche == 'space' or touche == 'Up':
+        tir_test(PosX)
         print('boom')
 
+def tir_test(PosX):
+    y = 800
+    Projectile = Canevas.create_rectangle(PosX-2, y, PosX+2, y+10 , width=5, outline='white', fill='white')
+    while y > 0 :
+        y -= 10
+        Canevas.coords(Projectile, PosX-2, y, PosX+2, y+10)
+        print(Canevas.coords(Projectile))
+        Canevas.after(50)
 
 Canevas.focus_set()
-Canevas.bind('<Key>',deplacement,)
+Canevas.bind('<Key>',tir_joueur)
 
 invade.mainloop()

@@ -28,14 +28,18 @@ def deplacement(event):
     touche = event.keysym
 
     # Déplacement vers la gauche
-    # # # Rajouter limite et déplacements aux limites
-    if touche == 'q' or touche == '<Left>':
-        PosX -= 10
+    if touche == 'q' or touche == 'Left':
+        if PosX - 30 > 0 :
+            PosX -= 30
+        Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
     
     # Déplacement vers la droite
-    if touche == 'd' or touche == '<Right>':
-        PosX += 10
+    if touche == 'd' or touche == 'Right':
+        if PosX + 30 < 1600 : 
+            PosX += 30
+        Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
 
+Canevas.after(100000000000000, deplacement)
 
 # Tir du joueur
 
