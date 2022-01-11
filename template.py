@@ -85,6 +85,11 @@ EnnemiF = Canevas.create_image(XF,Y, image=imgennemi2)
 EnnemiG = Canevas.create_image(XG,Y, image=imgennemi1)
 EnnemiH = Canevas.create_image(XH,Y, image=imgennemi2)
 
+#Création des obstacles
+imgbuisson=PhotoImage(file='Buisson.png')
+Buisson = Canevas.create_image(300,300, image=imgbuisson)
+
+#Déplacement des ennemis
 def deplacementEnnemis():
     global XA, XB, XC, XD, XE, XF, XG, XH, Y, DX
     if (XA+50 > 1300) or (XB+50 > 1300) or (XC+50 > 1300) or (XD+50 > 1300) or (XE+50 > 1300) or (XF+50 > 1300) or (XG+50 > 1300) or (XH+50 > 1300):
