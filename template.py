@@ -75,6 +75,7 @@ XF=650
 XG=770
 XH=890
 Y=90
+DX=20
 EnnemiA = Canevas.create_image(XA,Y, image=imgennemi1)
 EnnemiB = Canevas.create_image(XB,Y, image=imgennemi2)
 EnnemiC = Canevas.create_image(XC,Y, image=imgennemi1)
@@ -85,18 +86,30 @@ EnnemiG = Canevas.create_image(XG,Y, image=imgennemi1)
 EnnemiH = Canevas.create_image(XH,Y, image=imgennemi2)
 
 def deplacementEnnemis():
-    global XA, XB, XC, XD, XE, XF, XG, XH, Y
-    DX= 10
-    if XA+50 >= 1300 or XB+50 >= 1300 or XC+50 >= 1300 or XD+50 >= 1300 or XE+50 >= 1300 or XF+50 >= 1300 or XG+50 >= 1300 or XH+50 >= 1300 or
-        DX=-DX
-        Y+=20 
-    if XA-50 <= 0 or XB-50 <= 0 or XC-50 <= 0 or XD-50 <= 0 or XE-50 <= 0 or XF-50 <= 0 or XG-50 <= 0 or XH-50 <= 0:
+    global XA, XB, XC, XD, XE, XF, XG, XH, Y, DX
+    if (XA+50 > 1300) or (XB+50 > 1300) or (XC+50 > 1300) or (XD+50 > 1300) or (XE+50 > 1300) or (XF+50 > 1300) or (XG+50 > 1300) or (XH+50 > 1300):
         DX = -DX
-        Y+=20
-    
-
-
-
+        Y += 20 
+    if XA-50 < 0 or XB-50 < 0 or XC-50 < 0 or XD-50 < 0 or XE-50 < 0 or XF-50 < 0 or XG-50 < 0 or XH-50 < 0:
+        DX = -DX
+        Y += 20
+    XA = XA + DX 
+    XB = XB + DX 
+    XC = XC + DX 
+    XD = XD + DX 
+    XE = XE + DX 
+    XF = XF + DX 
+    XG = XG + DX
+    XH = XH + DX
+    Canevas.coords(EnnemiA, XA, Y)
+    Canevas.coords(EnnemiB, XB, Y)
+    Canevas.coords(EnnemiC, XC, Y)
+    Canevas.coords(EnnemiD, XD, Y)
+    Canevas.coords(EnnemiE, XE, Y)
+    Canevas.coords(EnnemiF, XF, Y)
+    Canevas.coords(EnnemiG, XG, Y)
+    Canevas.coords(EnnemiH, XH, Y)
+    invade.after(600, deplacementEnnemis)
 
 
 def deplacement(event):
@@ -141,5 +154,6 @@ def tir_test(PosX):
 
 Canevas.focus_set()
 Canevas.bind('<Key>',deplacement)
+deplacementEnnemis()
 
 invade.mainloop()
