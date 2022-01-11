@@ -21,7 +21,7 @@ Créé le [date] à [heure]
 Que reste-t-il à faire ?
 [tout doux liste]
 """
-from tkinter import Button, Canvas, Label, PhotoImage, Tk, mainloop
+from tkinter import  Button, Canvas, Label, PhotoImage, Tk, mainloop
 from tkinter.constants import ANCHOR, NW
 
 
@@ -66,14 +66,37 @@ Pion = Canevas.create_image(PosX, PosY, image=imgjoueur)
 #Insertion des ennemis
 imgennemi1=PhotoImage(file='Octorock.png')
 imgennemi2=PhotoImage(file='Moblin.png')
-EnnemiA = Canevas.create_image(50,90, image=imgennemi1)
-EnnemiB = Canevas.create_image(170,90, image=imgennemi2)
-EnnemiC = Canevas.create_image(290,90, image=imgennemi1)
-EnnemiD = Canevas.create_image(410,90, image=imgennemi2)
-EnnemiE = Canevas.create_image(530,90, image=imgennemi1)
-EnnemiF = Canevas.create_image(650,90, image=imgennemi2)
-EnnemiG = Canevas.create_image(770,90, image=imgennemi1)
-EnnemiH = Canevas.create_image(890,90, image=imgennemi2)
+XA=50
+XB=170
+XC=290
+XD=410
+XE=530
+XF=650
+XG=770
+XH=890
+Y=90
+EnnemiA = Canevas.create_image(XA,Y, image=imgennemi1)
+EnnemiB = Canevas.create_image(XB,Y, image=imgennemi2)
+EnnemiC = Canevas.create_image(XC,Y, image=imgennemi1)
+EnnemiD = Canevas.create_image(XD,Y, image=imgennemi2)
+EnnemiE = Canevas.create_image(XE,Y, image=imgennemi1)
+EnnemiF = Canevas.create_image(XF,Y, image=imgennemi2)
+EnnemiG = Canevas.create_image(XG,Y, image=imgennemi1)
+EnnemiH = Canevas.create_image(XH,Y, image=imgennemi2)
+
+def deplacementEnnemis():
+    global XA, XB, XC, XD, XE, XF, XG, XH, Y
+    DX= 10
+    if XA+50 >= 1300 or XB+50 >= 1300 or XC+50 >= 1300 or XD+50 >= 1300 or XE+50 >= 1300 or XF+50 >= 1300 or XG+50 >= 1300 or XH+50 >= 1300 or
+        DX=-DX
+        Y+=20 
+    if XA-50 <= 0 or XB-50 <= 0 or XC-50 <= 0 or XD-50 <= 0 or XE-50 <= 0 or XF-50 <= 0 or XG-50 <= 0 or XH-50 <= 0:
+        DX = -DX
+        Y+=20
+    
+
+
+
 
 
 def deplacement(event):
