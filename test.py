@@ -21,12 +21,12 @@ invade.title('Hyrule Invaders')
 invade.geometry('1920x1080')
 
 #Canevas
-Canevas = Canvas(invade, width=1300, height=800, bg='black')
+Canevas = Canvas(invade, width=1600, height=1080, bg='black')
 Canevas.place(x=0, y=0)
 
 #Menu à droite
-Menu = Canvas(invade, width=250, height=800, bg='white')
-Menu.place(x=1300, y=0)
+Menu = Canvas(invade, width=250, height=1080, bg='white')
+Menu.place(x=1600, y=0)
 
 #Logo Menu
 imgname=PhotoImage(file="Logopetit.png")
@@ -48,8 +48,8 @@ New= Button(invade, text='Nouvelle Partie')#, command=NewGame)
 New.place(in_=Menu, x=80, y= 370)
 
 
-PosX =230
-PosY =750
+PosX =800
+PosY =900
 
 Pion = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10,width=5, outline='black', fill='red')
 
@@ -62,11 +62,13 @@ def deplacement(event):
     # Déplacement vers la gauche
     if touche == 'q' or touche == 'Left':
         PosX -= 30
+        print(PosX)
     Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
     
     # Déplacement vers la droite
     if touche == 'd' or touche == 'Right':
         PosX += 30
+        print(PosX)
     Canevas.coords(Pion, PosX-10, PosY-10, PosX+10, PosY+10)
 
 Canevas.after(100000000000000, deplacement)

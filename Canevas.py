@@ -23,12 +23,12 @@ invade.title('Hyrule Invaders')
 invade.geometry('1920x1080')
 
 #Canevas
-Canevas = Canvas(invade, width=1300, height=800, bg='black')
+Canevas = Canvas(invade, width=1600, height=1080, bg='black')
 Canevas.place(x=0, y=0)
 
 #Menu à droite
-Menu = Canvas(invade, width=250, height=800, bg='white')
-Menu.place(x=1300, y=0)
+Menu = Canvas(invade, width=250, height=1080, bg='white')
+Menu.place(x=1600, y=0)
 
 #Logo Menu
 imgname=PhotoImage(file="Logopetit.png")
