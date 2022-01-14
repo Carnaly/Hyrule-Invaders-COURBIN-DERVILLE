@@ -151,8 +151,8 @@ def actions_joueur(event):
         Canevas.after(100)
         Canevas.itemconfig(Pion,image=img_joueur[num_img_joueur])   
         Canevas.after(100)
-        num_img_joueur = 0
-        Canevas.itemconfig(Pion, image=img_joueur[num_img_joueur])
+#        num_img_joueur = 0
+#        Canevas.itemconfig(Pion, image=img_joueur[num_img_joueur])
 
 def deplacement_proj(Projectile):
     proj_x,proj_y = Canevas.coords(Projectile)
