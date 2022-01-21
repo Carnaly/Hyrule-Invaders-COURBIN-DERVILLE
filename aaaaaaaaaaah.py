@@ -12,8 +12,6 @@ Que reste-t-il à faire ?
 """
 
 
-
-from cgitb import text
 from encodings import utf_8
 from random import randrange
 from tkinter import Button, Canvas, Label, PhotoImage, Tk, font, mainloop, Text
@@ -276,45 +274,23 @@ def end_game():
    # Fonction de fin de partie
 
 
-   # On détruit le canvas de jeu (fo ptet pa)
+   void()
 
+
+
+def void():
+   global Joueur, Canevas
+
+   Joueur.Link.packforget()
+   Joueur.box.packforget()
    Canevas.destroy()
-
-
-   # On crée l'écran de fin
-
-   Fin = Canvas(invade, width=1920, height=1080, bg='black')
-   Fin.place(x=0, y=0)
    
-   # GAME OVER
-
-   Fin.create_image(400,400, image = img_buis)
-
-   #Zone de Score
-
-   Score= Label(Fin, text = 'Score : ' + str(score))
-   Score.config(font=('Courier',16))
-   Score.place(relx=0.5, rely=0.6, anchor=CENTER)
-
-
-   # Bouton début du jeu
-
-   Start = Button(Fin, text = 'Recommencer', command = start_game)
-   Start.place(relx=0.5, rely=0.7, anchor=CENTER)
-
-   # Bouton retour titre
-
-   Return = Button(Fin, text = 'Écran titre' ) #, command = titre)
-   Return.place(relx=0.5, rely=0.75, anchor=CENTER)
-
-   # Bouton Quitter
-
-   Quit = Button(Fin, text = 'Quitter', command = invade.destroy)
-   Quit.place(relx=0.5, rely=0.8, anchor=CENTER)
+   #Canevas
+   Canevas = Canvas(invade, width=1600, height=1080, bg='black')
+   Canevas.place(x=0, y=0)
 
 
 
-#def void():
 
 
 
