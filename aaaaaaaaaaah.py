@@ -13,6 +13,7 @@ Que reste-t-il à faire ?
 
 
 
+from cgitb import text
 from encodings import utf_8
 from random import randrange
 from tkinter import Button, Canvas, Label, PhotoImage, Tk, font, mainloop, Text
@@ -33,6 +34,8 @@ img_titre = PhotoImage(file="Logo.png") # Image du logo titre
 img_logo = PhotoImage(file="Logopetit.png") # Image du logo
 # img_fond = PhotoImage(file="Fond.png") # Image du fond de l'écran titre
 # img_bg = PhotoImage(file="Background.png") # Image de l'arrière plan du jeu
+# img_go = PhotoImage(file="GameOver.png") # Image du Game Over
+
 
 img_coeur = PhotoImage(file='FullHeart.png') # Image du coeur rempli
 img_mi_coeur = PhotoImage(file='HalfHeart.png') # Image du demi coeur 
@@ -54,13 +57,14 @@ img_buis = PhotoImage(file='Buisson.png') # Image bloc
 
 # Création des variables globales du jeu
 
-global ennemi_speed, proj_speed, nbr_ennemi, pt_vie, Joueur, difficulty, score, vague
+global ennemi_speed, proj_speed, nbr_ennemi, pt_vie, Joueur, difficulty, score, vague, blocs, Canevas, Fin
 score = 0
 ennemi_speed = 600 
 proj_speed = 200 
 nbr_ennemi = 8 
-pt_vie = 10
+pt_vie = 2
 vague = 1
+blocs = []
 
 ########################################### CLASSES ############################################
 
@@ -71,7 +75,7 @@ class link:
    def __init__(self): # ptet rajouter difficulté mdr
 
       self.pos_x = 800
-      self.pos_y = 800
+      self.pos_y = 900
       self.box = Canevas.create_rectangle(self.pos_x-36, self.pos_y, self.pos_x+38, self.pos_y+96)
       self.Link = Canevas.create_image(self.pos_x-40, self.pos_y , anchor=NW, image = img_joueur)
 
@@ -110,6 +114,14 @@ class moblin(enemy):
       self.box = Canevas.create_rectangle(self.pos_x-48, self.pos_y, self.pos_x+48, self.pos_y+96,fill='white')
       self.img = Canevas.create_image(self.pos_x-48, self.pos_y , anchor=NW, image = img_moblin)
 
+class buisson(enemy):
+
+   def __init__(self, pos_x, pos_y):
+
+      enemy.__init__(self,pos_x, pos_y, 3, None, 0)
+
+      self.box = Canevas.create_rectangle(self.pos_x-48, self.pos_y, self.pos_x+16, self.pos_y+64,fill='white')
+      self.img = Canevas.create_image(self.pos_x-48, self.pos_y , anchor=NW, image = img_buis)
 
 
 # Ennemi Spécial
@@ -176,6 +188,9 @@ class proj_ganon(projectile):
       self.box = Canevas.create_rectangle(self.pos_x-16, self.pos_y-32, self.pos_x+16, self.pos_y+32) # à remplacer par dimension proj ganon
 
 
+def restart_game():
+
+   start_game()
 
 
 ###################################### CRÉATION DU CANVAS ######################################
@@ -211,7 +226,7 @@ Quit.place(in_=Menu, x=100, y= 400)
 
 
 #bouton nouvelle partie
-New= Button(invade, text='Nouvelle Partie')#, command=NewGame)
+New= Button(invade, text='Nouvelle Partie', command=restart_game)
 New.place(in_=Menu, x=80, y= 370)
 
 
@@ -231,8 +246,6 @@ for i in range(pt_vie//2):
 
 
 
-
-
 # Création du joueur
 
 Joueur = link()
@@ -249,16 +262,19 @@ def start_game():
    nbr_ennemi = 8 
    pt_vie = 10
    vague = 1
+   blocs = []
    score_maj()
    init_ennemi(nbr_ennemi)
+   init_bloc()
    Start.destroy()
    Quit.destroy()
    Infos.destroy()
    Titre.destroy()
 
+
 def end_game():
    # Fonction de fin de partie
-   
+
 
    # On détruit le canvas de jeu (fo ptet pa)
 
@@ -270,25 +286,54 @@ def end_game():
    Fin = Canvas(invade, width=1920, height=1080, bg='black')
    Fin.place(x=0, y=0)
    
+   # GAME OVER
+
+   Fin.create_image(400,400, image = img_buis)
 
    #Zone de Score
 
-   Score= Label(invade, text = 'Score : ' + str(score))
+   Score= Label(Fin, text = 'Score : ' + str(score))
    Score.config(font=('Courier',16))
    Score.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 
    # Bouton début du jeu
 
-   Start = Button(invade, text = 'Recommencer', command = start_game)
+   Start = Button(Fin, text = 'Recommencer', command = start_game)
    Start.place(relx=0.5, rely=0.7, anchor=CENTER)
 
+   # Bouton retour titre
+
+   Return = Button(Fin, text = 'Écran titre' ) #, command = titre)
+   Return.place(relx=0.5, rely=0.75, anchor=CENTER)
 
    # Bouton Quitter
 
-   Quit = Button(invade, text = 'Quitter', command = invade.destroy)
+   Quit = Button(Fin, text = 'Quitter', command = invade.destroy)
    Quit.place(relx=0.5, rely=0.8, anchor=CENTER)
 
+
+
+#def void():
+
+
+
+def init_bloc():
+
+   global blocs
+
+   cases_vides = [[0,1,6,7,8,9,10,11,12,13,18,19],[0,7,8,9,10,11,12,19]]
+   position = [600,664]
+   for j in range(2):
+      pos_x = 190
+      vide = cases_vides[j]
+      pos_y = position[j]
+      for i in range(20):
+         if i not in vide:
+            blocs.append(buisson(pos_x, pos_y))
+         pos_x+=64
+
+      
 
 def actions_joueur(event):
    # On gère ici toutes les actions possible par le joueur
@@ -310,7 +355,7 @@ def actions_joueur(event):
 
    # Tir du joueur
    if touche == 'space' or touche == 'Up':
-      Projectile =  proj_link(Joueur.pos_x, Joueur.pos_y-100)
+      Projectile =  proj_link(Joueur.pos_x, Joueur.pos_y-80)
       deplacement_proj(Projectile)
       # ptet rajouter du délai ptdr
 
@@ -321,7 +366,7 @@ def actions_joueur(event):
 
 
 def detection_collision(Projectile):
-   global pt_vie, score
+   global pt_vie, score, blocs
    proj_co = Canevas.coords(Projectile.box)
    
    if Projectile.direction == 1 :
@@ -364,8 +409,6 @@ def detection_collision(Projectile):
                         ennemis.pop(i)
                         i-=1
 
-
-
    if Projectile.direction == 0 :
 
       j_co = Canevas.coords(Joueur.box)
@@ -388,20 +431,37 @@ def detection_collision(Projectile):
             Vie_box.pop(1)
             Vie_box.append(Menu.create_image(co, anchor = NW, image = img_coeur_vide))
 
+   m = len(blocs)
+   for i in range(m):
+      buiss_co = Canevas.coords(blocs[i].box)
+      if (buiss_co[0] < proj_co[0] < buiss_co[2] or buiss_co[0] < proj_co[2] < buiss_co[2]) and (buiss_co[1] < proj_co[1] < buiss_co[3] or buiss_co[1] < proj_co[3] < buiss_co[3]) :
+         
+         if blocs[i].life == 1:
+            Canevas.delete(blocs[i].img)
+            blocs[i].life = 0            
+            Canevas.delete(blocs[i].box)
+            blocs.pop(i)
+
+         else:
+            blocs[i].life -= 1
+
+         Projectile.life = 0
+         Canevas.delete(Projectile.proj)
+         Canevas.delete(Projectile.box)
+
+
    if Projectile.life == 1 :
       Canevas.after(proj_speed,deplacement_proj,Projectile)
-
-
-
-
 
 
          
 
 def score_maj():
-   Score = Label(invade, text =('Score : ' + str(score)))
+   Score = Label(Menu, text =('Score : ' + str(score)))
+   print(score)
    Score.config(font=('Courier', 12))
    Score.place (in_=Menu, x=10, y = 250)
+
 
 def maj_vague():
    # On met à jour le numéro de la vague d'ennemis
@@ -508,7 +568,7 @@ def actions_ennemi(ennemi, direction):
    # Tir aléatoires
    if n == 1 :
 
-      k = randrange(10)
+      k = randrange(40)
       if k == 1 :
          Projectile =  ennemi[0].type_proj(ennemi[0].pos_x, ennemi[0].pos_y+150)
          deplacement_proj(Projectile)
@@ -552,6 +612,7 @@ def init_ennemi(n):
          
 
 def informations():
+
    Informations = Canvas(invade, width=1920, height=1080, bg='black')
    Informations.place(x=0, y=0)
    Zone_texte = Canvas(Informations)
