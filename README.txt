@@ -1,13 +1,10 @@
 HYRULE INVADERS par Michel COURBIN et Thomas DERVILLE
 
 
-
-
 Bienvenue dans le Royaume de Hyrule.
 
 De nombreux monstres sont apparus et sème le désespoir dans ce monde depuis l'avènement du Roi des Voleurs Ganon.
 Mais heureusement le jeune élu de la déesse Hylia, Link, est là pour se battre et protéger le Royaume de Hyrule de toutes ces menaces.
-
 
 
 Les règles du jeu : 
@@ -46,5 +43,7 @@ Pile : Une pile est utilisée dans la barre de coeurs entiers. On dépile un coe
 Liste : La liste est utilisée pour le bloc des ennemis et ainsi avoir une entité qui regroupe chacun des ennemis.
 (voir ennemis dans init_ennemi lignes 316 et 321 et dans init_ganon ligne 332) 
 
+
+Lien du GitHub utilisé : https://github.com/Carnaly/Hyrule-Invaders-COURBIN-DERVILLE
 
 
