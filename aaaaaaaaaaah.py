@@ -16,6 +16,7 @@ from encodings import utf_8
 from random import randrange
 from tkinter import Button, Canvas, Label, PhotoImage, Tk, font, mainloop, Text
 from tkinter.constants import ANCHOR, NW, CENTER, END, BOTH
+from turtle import width
 
 
 
@@ -32,7 +33,7 @@ img_titre = PhotoImage(file="Logo.png") # Image du logo titre
 img_logo = PhotoImage(file="Logopetit.png") # Image du logo
 # img_fond = PhotoImage(file="Fond.png") # Image du fond de l'écran titre
 # img_bg = PhotoImage(file="Background.png") # Image de l'arrière plan du jeu
-# img_go = PhotoImage(file="GameOver.png") # Image du Game Over
+img_go = PhotoImage(file="GameOver.png") # Image du Game Over
 
 
 img_coeur = PhotoImage(file='FullHeart.png') # Image du coeur rempli
@@ -48,6 +49,7 @@ img_proj_octo = PhotoImage(file='ProjectileOcto.png') # Image projectile octoroc
 img_moblin = PhotoImage(file='Moblin.png') # Image ennemis type 2
 img_proj_mob = PhotoImage(file='ProjectileMob.png') # Image projectile moblin
 img_ganon  = PhotoImage(file='Ganon.png') # Image ennemis type spécial
+img_proj_gan  = PhotoImage(file='ProjectileGanon.png') # Image projectile ennemis type spécial
 
 img_buis = PhotoImage(file='Buisson.png') # Image bloc
 
@@ -273,21 +275,27 @@ def start_game():
 def end_game():
    # Fonction de fin de partie
 
+   # Création de l'écran de fin
 
-   void()
+   Fin = Canvas(invade, width=1920, height=1080)
+   Fin.place(x=0,y=0)
+
+   Fin.create_image( 0, 0, anchor = NW, image = img_go)
 
 
+   
 
-def void():
-   global Joueur, Canevas
 
-   Joueur.Link.packforget()
-   Joueur.box.packforget()
-   Canevas.destroy()
+#def void():
+#   global Joueur, Canevas
+#
+#   Joueur.Link.packforget()
+#   Joueur.box.packforget()
+#   Canevas.destroy()
    
    #Canevas
-   Canevas = Canvas(invade, width=1600, height=1080, bg='black')
-   Canevas.place(x=0, y=0)
+#   Canevas = Canvas(invade, width=1600, height=1080, bg='black')
+#   Canevas.place(x=0, y=0)
 
 
 
