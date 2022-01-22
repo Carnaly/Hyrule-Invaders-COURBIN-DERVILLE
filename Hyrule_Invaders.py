@@ -41,7 +41,7 @@ img_mi_coeur = PhotoImage(file='HalfHeart.png') # Image du demi coeur
 img_coeur_vide = PhotoImage(file='HollowHeart.png') # Image du coeur vide
 
 img_joueur = PhotoImage(file='Link.png') # Image du joueur
-img_attack = PhotoImage(file='LinkAttack.png') # Image lors de l'attaque
+
 img_proj_joueur = PhotoImage(file='Projectile.png') # Image projectile du joueur
 
 img_octo = PhotoImage(file='Octorock.png') # Image ennemis type 1
