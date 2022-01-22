@@ -282,6 +282,24 @@ def end_game():
 
    Fin.create_image( 0, 0, anchor = NW, image = img_go)
 
+   # Bouton début du jeu
+   Start = Button(Fin, text = 'Commencer',font = (16), command = start_game)
+   Start.place(relx=0.5, rely=0.7, anchor=CENTER)
+
+
+
+   # Bouton Retour à l'écran titre
+
+   Infos = Button(Fin, text = 'Écran Titre', font = (16), command = title)
+   Infos.place(relx=0.5, rely=0.75, anchor=CENTER)
+
+
+   # Bouton Quitter
+
+   Quit = Button(Fin, text = 'Quitter', font = (16), command = invade.destroy)
+   Quit.place(relx=0.5, rely=0.8, anchor=CENTER)
+
+
 
    
 
@@ -322,7 +340,6 @@ def init_bloc():
 def actions_joueur(event):
    # On gère ici toutes les actions possible par le joueur
    touche = event.keysym
-   print(touche)
    # Déplacement vers la gauche
    if touche == 'q' or touche == 'Left':
       if Joueur.pos_x - 30 > 40 :  
@@ -442,7 +459,6 @@ def detection_collision(Projectile):
 
 def score_maj():
    Score = Label(Menu, text =('Score : ' + str(score)))
-   print(score)
    Score.config(font=('Courier', 12))
    Score.place (in_=Menu, x=10, y = 250)
 
@@ -471,7 +487,7 @@ def maj_vague():
          ennemi_speed -= 20
          proj_speed -= 10
          init_ennemi(nbr_ennemi)
-      print(ennemi_speed,proj_speed)
+
       
       
 
@@ -618,37 +634,41 @@ def informations():
 ################################## CRÉATION DE L'ÉCRAN TITRE ###################################
 
 
+def title():
+   Titre = Canvas(invade, width=1920, height=1080, bg='black')
+   Titre.place(x=0, y=0)
 
-Titre = Canvas(invade, width=1920, height=1080, bg='black')
-Titre.place(x=0, y=0)
+   # Image de fond
 
-# Image de fond
+   #Titre.create_image(0,0, anchor = NW, image = img_fond)
 
-#Titre.create_image(0,0, anchor = NW, image = img_fond)
+   # Logo du jeu
 
-# Logo du jeu
-
-Titre.create_image(500,0,anchor=NW, image = img_titre)
-
-
-# Bouton début du jeu
-Start = Button(invade, text = 'Commencer',font = (16), command = start_game)
-Start.place(relx=0.5, rely=0.7, anchor=CENTER)
+   Titre.create_image(500,0,anchor=NW, image = img_titre)
 
 
-
-# Bouton A Propos
-
-Infos = Button(invade, text = 'Informations', font = (16), command = informations)
-Infos.place(relx=0.5, rely=0.75, anchor=CENTER)
+   # Bouton début du jeu
+   Start = Button(invade, text = 'Commencer',font = (16), command = start_game)
+   Start.place(relx=0.5, rely=0.7, anchor=CENTER)
 
 
-# Bouton Quitter
 
-Quit = Button(invade, text = 'Quitter', font = (16), command = invade.destroy)
-Quit.place(relx=0.5, rely=0.8, anchor=CENTER)
+   # Bouton A Propos
+
+   Infos = Button(invade, text = 'Informations', font = (16), command = informations)
+   Infos.place(relx=0.5, rely=0.75, anchor=CENTER)
+
+
+   # Bouton Quitter
+
+   Quit = Button(invade, text = 'Quitter', font = (16), command = invade.destroy)
+   Quit.place(relx=0.5, rely=0.8, anchor=CENTER)
+
 
 Canevas.focus_set()
 Canevas.bind('<Key>',actions_joueur)
 
+title()
+
 invade.mainloop()
+
