@@ -307,7 +307,7 @@ def init_bloc():
 def init_ennemi(n):
 
     # On crée les n ennemis sur différents emplacements en haut de l'écran
-    pos_x = 120
+    pos_x = 150
 
     for i in range(n):
     # On altère entre octorock et moblin, pair octorock, impair moblin
@@ -328,7 +328,7 @@ def init_ennemi(n):
 
 def init_ganon():
     global ennemis
-    pos_x = 120
+    pos_x = 150
     ennemis.append(ganon(pos_x,0))
     actions_ennemi(ennemis, 0)
 
@@ -343,7 +343,7 @@ def actions_ennemi(ennemis, direction):
     if direction == 1 : 
     # Déplacement vers la gauche
         
-        if ennemis[0].pos_x -30 < 90 :
+        if ennemis[0].pos_x -30 < 100 :
         # Si on atteint le bord gauche on descend l'ennemi et 
         # il change de direction vers la droite
 
@@ -590,7 +590,7 @@ def detection_collision(Projectile):
             
             if pt_vie % 2 == 0: # Si le joueur a un nombre pair alors on remplace le demi coeur par un coeur vide
                 co = Menu.coords(vie_box[-1])
-                vie_box.pop(1)
+                vie_box.pop(-1)
                 vie_box.append(Menu.create_image(co, anchor = NW, image = img_coeur_vide))
 
 
