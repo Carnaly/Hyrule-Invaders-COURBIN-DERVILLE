@@ -358,7 +358,7 @@ def actions_ennemi(ennemis, direction):
 
 
         
-        else : # Sinon on déplace donc l'ennemi vers la gauche 
+        else : # Sinon on déplace donc l'ennemi vers la gauche
             if n == 1 :
                 # Si l'ennemi est seul
                 ennemis[0].pos_x -= 30
@@ -368,10 +368,10 @@ def actions_ennemi(ennemis, direction):
                     ennemis[i].pos_x -= 30
 
 
-    if direction == 0 :
+    else :
     # Déplacement vers la droite
 
-        if ennemis[-1].pos_x +30 > 1520 :
+        if ennemis[n-1].pos_x +30 > 1520 :
         # Si on atteint le bord droite on descend l'ennemi et 
         # il change de direction vers la gauche
             if n == 1 :
@@ -418,11 +418,10 @@ def actions_ennemi(ennemis, direction):
                     Projectile =  ennemis[i].type_proj(ennemis[i].pos_x, ennemis[i].pos_y+150)
                     deplacement_proj(Projectile)
 
-        for i in range(n):
             # On déplace l'image et la hitbox de chaque ennemi à ses nouvelles coordonnées
             Canevas.coords(ennemis[i].img, ennemis[i].pos_x-48, ennemis[i].pos_y+10)
             Canevas.coords(ennemis[i].box, ennemis[i].pos_x-48, ennemis[i].pos_y , ennemis[i].pos_x+48, ennemis[i].pos_y+96)
-    
+
 
     if ennemis[0].pos_y > 500:
         # A partir de cette limite, on commence à vérifier si les ennemis arrivent au niveau des blocs
