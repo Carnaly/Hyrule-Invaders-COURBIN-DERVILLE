@@ -46,4 +46,4 @@ Liste : La liste est utilisée pour le bloc des ennemis et ainsi avoir une entit
 
 Lien du GitHub utilisé : https://github.com/Carnaly/Hyrule-Invaders-COURBIN-DERVILLE
 
-
+Attention à bien ouvrir le dossier contenant le code ET les images (Sur VSCode dans l'explorateur faire "Open Folder par exemple) sinon le programme ne trouvera pas de lui-même les images et ne se lancera pas.
